@@ -13,15 +13,15 @@ def index():
         {"author": {"username": "Umar"}, "body": "The new manager was friendly!"},
         {"author": {"username": "Sambo"}, "body": "Muhammad is the messenger of God"},
     ]
-    return render_template("index.html", title="Home", user=user, posts=posts)
+    return render_template("index.html", title="Gida", user=user, posts=posts)
 
 
-@app.route("/login", methods=["GET", "POST"])
+@app.route("/login", methods=["POST", "GET"])
 def login():
     form = LoginForm()
     if form.validate_on_submit():
         flash(
-            "Login requested for user {}, remember_me={}".format(
+            "Login details for {}, remember_me={}".format(
                 form.username.data, form.remember_me.data
             )
         )
