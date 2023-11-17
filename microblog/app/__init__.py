@@ -7,7 +7,10 @@ import logging
 from logging.handlers import SMTPHandler
 from logging.handlers import RotatingFileHandler
 import os
-
+from flask_mail import Mail
+from flask_bootstrap import Bootstrap
+from flask_moment import Moment
+from flask_babel import Babel
 
 app = Flask(
     __name__, template_folder="/home/soft-dev/blog--miguel_all/microblog/templates"
@@ -18,9 +21,12 @@ migrate = Migrate(app, db)
 # As with other extensions, Flask-Login needs to be created and
 # initialized right after the application instance
 login = LoginManager(app)
-
 # Flask-Login needs to know what is the view function that handles logins.
 login.login_view = "login"
+bootstrap = Bootstrap(app)
+mail = Mail(app)
+moment = Moment(app)
+babel = Babel(app)
 
 if not app.debug:
     if app.config["MAIL_SERVER"]:
